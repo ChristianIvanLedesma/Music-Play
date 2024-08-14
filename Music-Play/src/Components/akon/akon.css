@@ -1,0 +1,47 @@
+.Contenedor-redondo {
+    width: 900px;
+    height: auto;
+    margin:auto ;
+    
+    
+}
+
+.imagen {
+    width: 150px;
+    height: 150px;
+    background-color: rgb(51, 50, 48);
+    float: left;
+    display: flex;
+    justify-content: center;
+    margin: 10px;
+    border-radius: 50%;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
+    transition: transform 0.2s;
+    overflow: hidden; 
+    
+}
+
+.imagen img {
+    width: 400px;
+    height: auto;
+    object-fit: cover;
+    margin-right:35px ;
+    margin-bottom: 0px;
+}
+
+.imagen:hover {
+    transform: scale(1.05);
+}
+
+@media (max-width: 768px) {
+    .Contenedor-redondo {
+      width: 100%; 
+      gap: 10px; 
+    }
+  
+    .imagen {
+      width: calc(49% - 20px); 
+      margin-bottom: 20px; 
+    }
+  }
+  
