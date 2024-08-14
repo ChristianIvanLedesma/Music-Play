@@ -1,6 +1,8 @@
 import  { ReactNode } from 'react';
-import '../akon/akon.css';
+import './akon.css';
 import Boton from '../botones/boton'
+import FotoInicio from '../avatar/avatar'
+
 
 
 type Props = {
@@ -11,8 +13,11 @@ type Props = {
 
 function AvatarChildren({ title, children }: Props) {
     return (
+        
         <div className="Contenedor-redondo">
+      
             <div className="imagen">
+            
                 <h3>{title}</h3>
                 {children}
             </div>
@@ -23,8 +28,12 @@ function AvatarChildren({ title, children }: Props) {
 function Avatar() {
     return (
         <>
+        
             <Boton />
-           
+            
+           <FotoInicio title="Akon">
+           <p></p>
+           </FotoInicio>
             
             <AvatarChildren title='imagen 1'>
             <img
@@ -34,11 +43,13 @@ function Avatar() {
           
         />
             </AvatarChildren>
+           
             <AvatarChildren title='imagen 2'>
-            <img
+             <img
           className="avatar"
           src="https://images.says.com/uploads/story_source/source_image/535732/4cab.jpg"
           alt="Aklilu Lemma"
+         
           
         />
             </AvatarChildren>

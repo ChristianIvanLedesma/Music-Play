@@ -15,14 +15,17 @@ function Header(){
      
       <img src={logo} alt="Logo-Music" className="Logo-Music" />
       <input type="text" placeholder="Buscar..." />
-      
+     
+     
       <div className='contenedor-avatar'>
-      <img className='Avatar' src={Avatar} alt="Usuario" />
-      </div>
+        <img className='Avatar' src={Avatar} alt="Usuario" />
+        </div>
+    
       </div>
     </header>
   );
 }
+
 
 
 

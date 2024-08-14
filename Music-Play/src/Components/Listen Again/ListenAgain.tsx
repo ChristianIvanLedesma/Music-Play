@@ -3,6 +3,7 @@ import Card from './SongCard';
 import musicData from './Lista-Canciones'; 
 import shakira from '/image/shakira.jpg'; 
 import Boton from '../botones/boton'
+import FotoInicio from '../avatar/avatar'
 
 
 
@@ -11,6 +12,9 @@ const ListaCanciones = () => {
 
   return (
     <div>
+      <FotoInicio title="Listen Again" >
+      <p></p>
+      </ FotoInicio>
       <Boton />
       <div className="cards-container" >
         {listenAgain.map(song => (
