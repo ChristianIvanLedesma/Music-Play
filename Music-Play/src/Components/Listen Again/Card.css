@@ -1,56 +1,82 @@
+.cards-cont {
+  width: 100%;
+   max-width: 1100px;
+  height: auto;
+margin: auto;
+  display: flex;
+flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+ 
+  padding: 10px;
+  box-sizing: border-box;
+}
 
-.cards-container {
-    width: 1100px;
-    height: auto;
-    margin:auto ;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px; 
-   
-  }
-  
+.card {
+  text-align: center;
+   padding: 10px;
+  width: calc(33.33% - 40px); 
+  max-width: 150px;
+  box-sizing: border-box;
+}
+
+.card-image {
+  width: 100%;
+  max-width: 150px;
+   height: auto;
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+.card-content {
+  margin-top: 10px;
+}
+
+.song-title {
+   font-size: 20px;
+  font-weight: bold;
+  margin: 5px 0;
+}
+
+.artist-name,
+.album-name {
+  font-size: 12px;
+  color: #555;
+  margin: 3px 0;
+}
+
+
+@media (max-width: 768px) {
   .card {
-    text-align: center;
-    padding: 10px;
-   
-    width: 150px; 
-}  
-  .card-image {
-    width: 150px;
-    height: 150p;
-    border-radius: 2px;
-    cursor: pointer;
+    width: calc(50% - 20px); 
   }
-  
-  .card-content {
-    margin-top: 10px;
-  }
-  
+
   .song-title {
-    font-size: 14px;
-    font-weight: bold;
-    margin: 5px 0;
+    font-size: 18px;
   }
-  
+
   .artist-name,
   .album-name {
-    font-size: 12px;
-    color: #555;
-    margin: 3px 0;
+    font-size: 11px;
   }
-  
- 
-  @media (max-width: 768px) {
-    .cards-container {
-      width: 100%; 
-      gap: 10px; 
-    }
-  
-    .card {
-      width: calc(35% - 20px); 
-      margin-bottom: 20px; 
-      
-    }
+}
+
+@media (max-width: 480px) {
+  .card {
+    width: calc(100% - 20px);
   }
-  
+
+  .card-image {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .song-title {
+    font-size: 16px;
+  }
+
+  .artist-name,
+  .album-name {
+    font-size: 10px;
+  }
+}

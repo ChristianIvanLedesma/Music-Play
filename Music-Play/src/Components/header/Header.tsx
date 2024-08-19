@@ -14,7 +14,7 @@ function Header(){
         <div className='contenedor-principal'>
      
       <img src={logo} alt="Logo-Music" className="Logo-Music" />
-      <input type="text" placeholder="Buscar..." />
+      <input type="text" placeholder="Search..." />
      
      
       <div className='contenedor-avatar'>

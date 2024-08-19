@@ -1,83 +1,55 @@
-import  { ReactNode } from 'react';
-import './akon.css';
+import  {  ReactNode } from 'react';
+import '../akon/akon.css';
 import Boton from '../botones/boton'
-import FotoInicio from '../avatar/avatar'
-
+import FotoInicio from '../avatar/avatar';
+import generos from './genero';
 
 
 type Props = {
-    title: string;
-    children: ReactNode;
-    
+  children: ReactNode;
+  img?: string;
+  genero:string;
 };
 
-function AvatarChildren({ title, children }: Props) {
-    return (
-        
-        <div className="Contenedor-redondo">
+function AvatarChildren({ children, img, genero }: Props) {
+  return (
+    <div className='total'>
+      <div className="imagen">
+          {img && <img src={img} alt={`Cover of ${genero}`} className="card-image" />}
+      </div>
       
-            <div className="imagen">
-            
-                <h3>{title}</h3>
-                {children}
-            </div>
-        </div>
-    );
+      <div className='contenido'>{children}</div>
+
+      </div>
+  
+  );
 }
 
 function Avatar() {
     return (
         <>
+        <FotoInicio title="Akon" >
+        <p></p>
+        </FotoInicio>
+
+      <div className="avatar1" >
+      <Boton />
+        {generos.map(song => (
+          <AvatarChildren
+            key={song.id}
+            genero={song.genero}
+            img={song.img}
+            
+            
+          > 
+            <p className="song-title">{song.title}</p>
+            <p className="artist-name">De {song.artist}</p>
+            <p className="album-name">Genero: {song.genero}</p>
+          </AvatarChildren>
+        ))}
         
-            <Boton />
-            
-           <FotoInicio title="Akon">
-           <p></p>
-           </FotoInicio>
-            
-            <AvatarChildren title='imagen 1'>
-            <img
-          className="avatar"
-          src="https://www.nme.com/wp-content/uploads/2023/01/2023_coldplay_getty_2000x1270.jpg"
-          alt="Aklilu Lemma"
-          
-        />
-            </AvatarChildren>
-           
-            <AvatarChildren title='imagen 2'>
-             <img
-          className="avatar"
-          src="https://images.says.com/uploads/story_source/source_image/535732/4cab.jpg"
-          alt="Aklilu Lemma"
-         
-          
-        />
-            </AvatarChildren>
-            <AvatarChildren title='imagen 3'>
-            <img
-          className="avatar"
-          src="https://i2.wp.com/decider.com/wp-content/uploads/2018/11/coldplay-a-head-full-of-dreams.jpg?quality=90&strip=all&ssl=1"
-          alt="Aklilu Lemma"
-          
-        />
-            </AvatarChildren>
-            <AvatarChildren title='imagen 4'>
-            <img
-          className="avatar"
-          src="https://fmaspen.com/wp-content/uploads/2023/04/coldplay-1.jpg"
-          alt="Aklilu Lemma"
-          
-        />
-            </AvatarChildren>
-            <AvatarChildren title='imagen 5'>
-            <img
-          className="avatar"
-          src="https://i.pinimg.com/originals/35/ef/9b/35ef9b969d85c81dd7f1ee45b866c7b8.jpg"
-          alt="Aklilu Lemma"
-          
-        />
-           
-            </AvatarChildren>
+      </div>
+
         </>
     );
 }

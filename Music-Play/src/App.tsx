@@ -2,7 +2,9 @@
 import Header from './Components/header/Header'; 
 import ListaCanciones from './Components/Listen Again/ListenAgain';
 import Avatar from './Components/akon/akon'
-import PlaybackBar from './Components/Play/play'
+import PlaybackBar from './Components/PlaybackBar/play'
+import Favoritos from './Components/Recommended Albums/CancionesFavoritas'
+import QuickPicks from './Components/Quick picks/Quick-picks'
 import './App.css';
 
 function App() {
@@ -12,6 +14,8 @@ function App() {
       <ListaCanciones />
       <Avatar />
       <PlaybackBar />
+      <QuickPicks />
+      <Favoritos />
   
     </>
   );
