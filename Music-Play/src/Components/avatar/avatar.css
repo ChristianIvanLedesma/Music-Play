@@ -1,0 +1,23 @@
+.FotoInicio {
+    width: 350px; 
+    height: 40px;
+    display: flex;
+    align-items: center;
+    margin-left: 25px;
+
+    
+  
+   
+
+}
+
+.FotoInicioavatar {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%; 
+    
+}
+
+.FotoInicio p {
+    margin-left: 10px;
+}

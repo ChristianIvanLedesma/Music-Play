@@ -27,7 +27,7 @@
    
         width: 450px;
         text-align: center;
-        padding: 5px;
+        padding: auto;
         margin: auto; 
     
 }
@@ -36,4 +36,11 @@
 .info p img{
     width: 35px;
     height: 35px;
+    font-size: 14px;
+}
+
+
+
+.info p{
+    font-size: 14px;
 }
