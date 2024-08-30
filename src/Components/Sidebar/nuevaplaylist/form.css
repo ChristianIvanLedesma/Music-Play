@@ -1,0 +1,65 @@
+.formu-playlist-container {
+    max-width: 600px;
+    height: 400px;
+    margin-left: 250px;
+    margin-top: 90px;
+    padding: 20px;
+    box-sizing: border-box;
+    text-align: left;
+    display: flex; 
+    
+   
+    
+}
+
+.formu-playlist, .product-display {
+    flex: 1; 
+   
+}
+
+.formu-playlist {
+    max-width: 250px;
+    padding: 20px;
+    
+    
+}
+
+.product-display {
+    max-width: 200px;
+    padding: 40px;
+    margin-top: 60px;
+    text-align: left;
+    
+   
+   
+}
+
+.product-display img {
+    width: 150px;
+    border-radius: 4px;
+    margin-bottom: 5px;
+}
+
+.product-display h4 {
+    margin: 10px 0;
+}
+
+.product-display p {
+    color: #666;
+}
+
+
+
+.formu-playlist button{
+    width: 120px;
+    height: 24px;
+    font-size: 14px;
+    border: 1px solid white;
+    color:  white;
+    background-color: #666;
+    border-radius: 3px;
+}
+.formu-playlist input {
+    width: 220px;
+    
+}

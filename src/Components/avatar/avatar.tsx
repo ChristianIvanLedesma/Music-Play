@@ -15,7 +15,7 @@ type Props = {
         <div className='FotoInicio'>
             <img className='FotoInicioavatar' src={avatarinicio} alt="Usuario" />
             <p>{title}</p>
-            <p>{children} </p>
+            <div>{children}</div>
             
             
         </div>
