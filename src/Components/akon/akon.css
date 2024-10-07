@@ -1,5 +1,4 @@
-
-.avatar1{
+.avatar1 {
   margin-left: 210px;
   width: calc(100% - 210px); 
   max-width: 1100px;
@@ -10,9 +9,6 @@
   gap: 10px;
   padding: 10px;
   box-sizing: border-box;
- 
-  
- 
   
 }
 
@@ -25,9 +21,9 @@
   box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
   transition: transform 0.2s;
   overflow: hidden; 
-  
-  
+  border:  2px solid white;
 }
+
 .total{
   width: 200px;
   height: auto;

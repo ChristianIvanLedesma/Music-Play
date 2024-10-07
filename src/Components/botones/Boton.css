@@ -1,5 +1,5 @@
-.Boton{
-    width:"90px";
-    margin-left: 900PX;
-}
 
+.Botones{
+    margin-left: 900PX; 
+    cursor: pointer;
+}

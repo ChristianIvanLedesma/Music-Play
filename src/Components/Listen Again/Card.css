@@ -27,7 +27,13 @@
    height: auto;
   border-radius: 2px;
   cursor: pointer;
+  box-sizing: border-box;
+  
 }
+
+.card-image:hover {
+  border:2px solid white ;
+ }
 
 .card-content {
   margin-top: 10px;
