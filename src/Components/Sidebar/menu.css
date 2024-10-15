@@ -14,16 +14,47 @@
     
     
 }
-.boton{
-    width: 140px;
-    height: 35px;
-    font-size: 14px;
-    border: 2px solid white;
-    color:  white;
-    background-color: #5b5a5a;
-    border-radius: 15px;
-
-}
+.boton {
+    height: 50PX;
+    display: flex; /* Para alinear el texto y el ícono */
+    align-items: center; /* Centra el ícono verticalmente con el texto */
+    justify-content: center; /* Centra todo el contenido */
+    background-color: #007bff; /* Color de fondo */
+    color: white; /* Color del texto */
+    border: none; /* Sin bordes */
+    border-radius: 8px; /* Bordes redondeados */
+    padding: 10px 20px; /* Espaciado interno */
+    font-size: 16px; /* Tamaño de fuente */
+    font-weight: bold; /* Fuente más destacada */
+    cursor: pointer; /* Cambia el cursor cuando se pasa sobre el botón */
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Transiciones suaves */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra ligera */
+  }
+  
+  .boton svg {
+    margin-right: 10px; /* Espacio entre el ícono y el texto */
+    transition: transform 0.3s ease; /* Animación para el ícono */
+  }
+  
+  .boton:hover {
+    background-color: #0056b3; /* Color de fondo más oscuro al hacer hover */
+    transform: translateY(-2px); /* Eleva ligeramente el botón al hacer hover */
+  }
+  
+  .boton:active {
+    background-color: #003f7f; /* Color más oscuro cuando se presiona el botón */
+    transform: translateY(1px); /* Efecto de "presión" en el botón */
+  }
+  
+  .boton:focus {
+    outline: none; /* Elimina el contorno predeterminado */
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.5); /* Añade un contorno suave al enfocarse */
+  }
+  
+  .boton svg:hover {
+    transform: rotate(360deg); /* Rotación del ícono al pasar el cursor */
+  }
+  
 
 
 .product-display img {

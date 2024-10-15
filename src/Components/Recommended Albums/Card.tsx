@@ -1,21 +1,22 @@
-import { ReactNode } from 'react';
+
 import './card.css';
 
 type Props = {
-  children: ReactNode;
+ 
   img?: string;
-  album: string;
   title:string;
   artist:string;
+  onClick?: () => void;
 };
 
-function Card({ children, img, album}: Props) {
+function Card({  title,artist,img, onClick }: Props) {
   return (
-    <div className="card2">
+    <div className="card2" onClick={onClick}>
         
-      {img && <img src={img} alt={`Cover of ${album}`} className="card-image2" />}
+      {img && <img src={img}  className="card-image2" />}
       <div className="card-content2">
-        {children}
+        <p>{title}</p><br></br>
+        <p className='artist-name'>{artist}</p>
       </div>
     </div>
   );
