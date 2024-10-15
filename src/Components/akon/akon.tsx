@@ -1,4 +1,4 @@
-import { ReactNode, useEffect, useState } from 'react'; 
+import { ReactNode, useEffect, useState } from 'react';
 import '../akon/akon.css';
 import Boton from '../botones/boton';
 import FotoInicio from '../avatar/avatar';
@@ -48,13 +48,13 @@ type AvatarChildrenProps = {
   children: ReactNode;
   img?: string;
   genero: string;
-  onClick: () => void; // Añadir la prop onClick
+  onClick: () => void; 
 };
 
 function AvatarChildren({ children, img, genero, onClick }: AvatarChildrenProps) {
   return (
     <div className='total'>
-      <div className="imagen" onClick={onClick}> {/* Agregar onClick aquí */}
+      <div className="imagen" onClick={onClick}>
         {img && <img src={img} alt={`Cover of ${genero}`} className="card-image" />}
       </div>
       <div className='contenido'>{children}</div>
@@ -67,8 +67,8 @@ function Avatar() {
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
   const [currentPage, setCurrentPage] = useState<number>(0);
-  const [currentSong, setCurrentSong] = useState<string | null>(null);
-  const [audioElement, setAudioElement] = useState<HTMLAudioElement | null>(null); // Ref para el audio
+  const [currentSong, setCurrentSong] = useState<string>(''); 
+  const [audioElement, setAudioElement] = useState<HTMLAudioElement | null>(null); 
 
   useEffect(() => {
     const fetchSongs = async () => {
@@ -112,7 +112,7 @@ function Avatar() {
 
   const handlePlay = (audioUrl: string) => {
     if (audioElement) {
-      audioElement.pause(); // Detener la canción anterior
+      audioElement.pause(); 
     }
 
     const newAudioElement = new Audio(audioUrl);
@@ -121,7 +121,7 @@ function Avatar() {
       console.error('No se pudo reproducir el audio:', err);
     });
 
-    setCurrentSong(audioUrl); // Actualiza la canción actual
+    setCurrentSong(audioUrl); 
   };
 
   if (loading) {
@@ -147,7 +147,7 @@ function Avatar() {
             key={song.id}
             genero={song.user.urls.profile}
             img={song.user.urls.profile_image.original || 'public/image/ROMANTICOS.jpg'}
-            onClick={() => handlePlay(song.audio_url)} // Se pasa la función aquí
+            onClick={() => handlePlay(song.audio_url)}
           >
             <p className="song-title">{song.title}</p>
             <p className="artist-name">De {song.user.urls.profile}</p>
@@ -161,8 +161,9 @@ function Avatar() {
           audioUrl: song.audio_url,
           songTitle: song.title,
           artist: song.user.urls.profile,
+          imageUrl: song.user.urls.profile_image.original || 'public/image/ROMANTICOS.jpg'
         }))}
-        currentSong={currentSong}
+        currentSong={currentSong || ''} 
       />
     </>
   );

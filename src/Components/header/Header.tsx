@@ -1,4 +1,4 @@
-//logo de music - barra de busqueda - imagen del perfil
+
 
 import './Header.css';
 import logo from'../../assets/logs/header/Logo_Music.png';

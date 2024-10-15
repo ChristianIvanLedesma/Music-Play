@@ -15,7 +15,7 @@ function Card({ img, children, title, artist, onClick }: Props) {
       <div className='chil'>
         {children}
         <p className="titulo"></p> 
-        <p className="artista">{artist}</p> 
+        <p className="artist-name">{artist}</p> 
       </div>
     </div>
   );

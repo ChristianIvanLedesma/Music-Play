@@ -1,89 +1,56 @@
 .cards-cont {
-  margin-left: 210px; 
-  width: calc(100% - 210px); 
-  max-width: 1100px;
-  height: auto;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 20px;
-  padding: 10px;
-  box-sizing: border-box;
-  
+  margin-left: 270px; 
+  width: calc(100% - 310px); 
+  max-width: 1300px; 
+  height: auto; 
+  display: flex; 
+  flex-wrap: wrap; 
+  justify-content: 25px; /* Espacio entre tarjetas */
+  gap: 20px; /* Espacio entre filas y columnas */
+  padding: 10px; 
+  box-sizing: border-box; 
+
 }
 
-
 .card {
-  text-align: center;
-   padding: 10px;
-  width: calc(33.33% - 40px); 
-  max-width: 150px;
-  box-sizing: border-box;
+  display: flex; /* Flexbox para alinear la imagen y el texto horizontalmente */
+  align-items: center; /* Centra verticalmente los elementos */
+  width: calc(40.33% - 10px); /* Tres tarjetas por fila, con margen entre ellas */
+  margin-top: 10px; /* Margen superior para espaciado */
+  padding: 15px; /* Añade espacio interno alrededor de la tarjeta */
+  border: 1px solid #ddd; /* Añade un borde ligero alrededor de la tarjeta */
+  border-radius: 8px; /* Bordes redondeados para la tarjeta */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra ligera para dar profundidad */
+  cursor: pointer; /* Cambia el cursor al pasar sobre la tarjeta */
+  transition: transform 0.3s ease; /* Transición suave para el hover */ 
+
+}
+
+.card:hover {
+  transform: scale(1.02); /* Efecto de aumento al pasar el cursor */
 }
 
 .card-image {
-  width: 100%;
-  max-width: 150px;
-   height: auto;
-  border-radius: 2px;
-  cursor: pointer;
-  box-sizing: border-box;
-  
-}
-
-.card-image:hover {
-  border:2px solid white ;
- }
-
-.card-content {
-  margin-top: 10px;
+  width: 120px; /* Ancho fijo de la imagen */
+  height: 80px; /* Altura fija de la imagen */
+  border-radius: 4px; /* Bordes redondeados en la imagen */
+  margin-right: 5px; /* Espacio entre la imagen y el contenido de texto */
+  transition: transform 2s ease; /* Animación suave de 2 segundos */
 }
 
 .song-title {
-   font-size: 20px;
-  font-weight: bold;
-  margin: 5px 0;
+  font-size: 16px; /* Tamaño de fuente del título */
+  font-weight: bold; /* Hace el título más destacado */
+  max-width: 190px; /* Limita el ancho máximo del título */
+  word-wrap: break-word; /* Permite que las palabras se dividan en varias líneas */
+  margin: 0; /* Elimina márgenes predeterminados */
+  white-space: nowrap; /* Evita que el texto exceda una línea */
+  overflow: hidden; /* Oculta el texto excedente */
+  text-overflow: ellipsis; /* Añade puntos suspensivos si el texto es demasiado largo */
 }
 
-.artist-name,
-.album-name {
-  font-size: 12px;
-  color: #555;
-  margin: 3px 0;
-}
-
-
-@media (max-width: 768px) {
-  .card {
-    width: calc(50% - 20px); 
-  }
-
-  .song-title {
-    font-size: 18px;
-  }
-
-  .artist-name,
-  .album-name {
-    font-size: 11px;
-  }
-}
-
-@media (max-width: 480px) {
-  .card {
-    width: calc(100% - 20px);
-  }
-
-  .card-image {
-    max-width: 100%;
-    height: auto;
-  }
-
-  .song-title {
-    font-size: 16px;
-  }
-
-  .artist-name,
-  .album-name {
-    font-size: 10px;
-  }
+.artist-name {
+  font-size: 12px; /* Tamaño de fuente para el nombre del artista */
+  color: #666; /* Color gris para diferenciarlo del título */
+  margin-top: 5px; /* Espaciado entre el título y el nombre del artista */
 }

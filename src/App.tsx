@@ -1,14 +1,15 @@
-import { useState } from 'react';
-import Header from './Components/header/Header'; 
-import ListaCanciones from './Components/Listen Again/ListenAgain';
-import Avatar from './Components/akon/akon';
+import { AudioProvider } from './Components/contex/contex'; 
+import QuickPicks from './Components/Quick picks/Quick-picks';
 import PlaybackBar from './Components/PlaybackBar/play';
 import Favoritos from './Components/Recommended Albums/CancionesFavoritas';
-import QuickPicks from './Components/Quick picks/Quick-picks';
+import Lista from './Components/Listen Again/ListenAgain';
+
+import { useState } from 'react';
+import Header from './Components/header/Header'; 
+import Avatar from './Components/akon/akon';
 import Menu from './Components/Sidebar/menu';
 import FormPlayList from './Components/Sidebar/form'; 
 import './App.css';
-
 
 interface Playlist {
   image: string;
@@ -19,6 +20,8 @@ interface Playlist {
 function App() {
   const [isFormVisible, setIsFormVisible] = useState(false); 
   const [playlists, setPlaylists] = useState<Playlist[]>([]); 
+  const [currentSong, setCurrentSong] = useState<string>(''); 
+  const [playlist, setPlaylist] = useState<{ audioUrl: string; songTitle: string; artist: string; imageUrl: string; }[]>([]); 
 
   const handleMenuClick = () => {
     setIsFormVisible(prev => !prev); 
@@ -30,25 +33,31 @@ function App() {
   };
 
   return (
-    <>
-      <Menu 
-        onClick={handleMenuClick} 
-        isFormVisible={isFormVisible} 
-        playlists={playlists} 
-      /> 
-      <Header />
-      <PlaybackBar />
-      {isFormVisible ? (
-        <FormPlayList onCreate={handleCreatePlaylist} />
-      ) : (
-        <>
-          <ListaCanciones />
-          <Avatar />
-          <QuickPicks />
-          <Favoritos />
-        </>
-      )}
-    </>
+    <AudioProvider>
+      <>
+        <Menu 
+          onClick={handleMenuClick} 
+          isFormVisible={isFormVisible} 
+          playlists={playlists} 
+        /> 
+        
+        <Header />
+        <PlaybackBar 
+          playlist={playlist} 
+          currentSong={currentSong}
+        />
+        {isFormVisible ? (
+          <FormPlayList onCreate={handleCreatePlaylist} />
+        ) : (
+          <>
+            <Lista setPlaylist={setPlaylist} setCurrentSong={setCurrentSong} />
+            <Avatar />
+            <QuickPicks setPlaylist={setPlaylist} setCurrentSong={setCurrentSong} />
+            <Favoritos setPlaylist={setPlaylist} setCurrentSong={setCurrentSong} /> 
+          </>
+        )}
+      </>
+    </AudioProvider>
   );
 }
 

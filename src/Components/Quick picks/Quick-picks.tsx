@@ -1,4 +1,6 @@
-import { useEffect, useState } from 'react';
+
+import {  useEffect, useState } from 'react';
+import { usePlayback } from '../hooks/veite'; 
 import Card from './tarjetas';
 import './quick.css';
 import Boton from '../botones/boton';
@@ -8,6 +10,7 @@ import PlaybackBar from '../PlaybackBar/play';
 interface Channel {
   title: string;
 }
+
 
 interface User {
   id: number;
@@ -43,14 +46,19 @@ interface ApiResponse {
   };
 }
 
-const SONGS_PER_PAGE = 8;
+interface FavoritosProps {
+  setPlaylist: React.Dispatch<React.SetStateAction<{ audioUrl: string; songTitle: string; artist: string; imageUrl: string; }[]>>;
+  setCurrentSong: React.Dispatch<React.SetStateAction<string>>;
+}
 
-function QuickPicks() {
+const SONGS_PER_PAGE = 6;
+
+const QuickPicks: React.FC<FavoritosProps> = ({ setPlaylist, setCurrentSong }) => {
   const [songs, setSongs] = useState<Song[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
   const [currentPage, setCurrentPage] = useState<number>(0);
-  const [currentSong, setCurrentSong] = useState<string | null>(null); 
+  const { currentSong } = usePlayback(); 
 
   useEffect(() => {
     fetch('https://api.audioboom.com/audio_clips')
@@ -93,6 +101,12 @@ function QuickPicks() {
 
   const handlePlay = (audioUrl: string) => {
     setCurrentSong(audioUrl); 
+    setPlaylist(songs.map(song => ({
+      audioUrl: song.audio_url,
+      songTitle: song.title,
+      artist: song.user.urls.profile,
+      imageUrl: song.user.urls.profile_image.original || 'public/image/default.jpg', 
+    })));
   };
 
   if (loading) {
@@ -107,35 +121,37 @@ function QuickPicks() {
 
   return (
     <>
-      <FotoInicio title="Quick Picks">
+      <FotoInicio title="QuickPicks">
         <p></p>
       </FotoInicio>
-      <div className="quick-picks">
+      <div className="favorito-principal">
         <Boton onNext={handleNext} onPrev={handlePrev} />
         {displayedSongs.map(song => (
           <Card
-            key={song.id}
-            artist={song.user.urls.profile}
-            title={song.title}
-            img={song.user.urls.profile_image.original || 'public/image/ROMANTICOS.jpg'}
-            onClick={() => handlePlay(song.audio_url)} 
-          >
-            <div>
-              <p>{song.title}</p>
-            </div>
-          </Card>
+          key={song.id}
+          artist={song.user.urls.profile} 
+          title={song.title}
+          img={song.user.urls.profile_image.original || 'public/image/ROMANTICOS.jpg'} 
+          onClick={() => handlePlay(song.audio_url)} 
+        >
+          <p className="titulo">{song.title}</p>
+        </Card>
+        
+        
+          
         ))}
       </div>
-      <PlaybackBar 
-        playlist={displayedSongs.map(song => ({
+      <PlaybackBar
+        playlist={songs.map(song => ({
           audioUrl: song.audio_url,
           songTitle: song.title,
           artist: song.user.urls.profile,
+          imageUrl: song.user.urls.profile_image.original || 'public/image/default.jpg', 
         }))}
-        currentSong={currentSong}
+        currentSong={currentSong || ''} 
       />
     </>
   );
-}
+};
 
 export default QuickPicks;
