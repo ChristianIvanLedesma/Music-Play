@@ -6,7 +6,7 @@ import Card from './Card';
 import './card.css';
 import Boton from '../botones/boton';
 import FotoInicio from '../avatar/avatar';
-import PlaybackBar from '../PlaybackBar/play';
+
 
 interface Channel {
   title: string;
@@ -109,9 +109,7 @@ const Favoritos: React.FC<FavoritosProps> = ({ setPlaylist, setCurrentSong }) =>
     })));
   };
 
-  if (loading) {
-    return <p>Cargando canciones...</p>;
-  }
+  if (loading) 
 
   if (error) {
     return <p>{error}</p>;
@@ -122,7 +120,7 @@ const Favoritos: React.FC<FavoritosProps> = ({ setPlaylist, setCurrentSong }) =>
   return (
     <>
       <FotoInicio title="favoritos">
-        <p></p>
+      <p > {currentSong}</p>
       </FotoInicio>
       <div className="favorito-principal">
         <Boton onNext={handleNext} onPrev={handlePrev} />
@@ -136,15 +134,7 @@ const Favoritos: React.FC<FavoritosProps> = ({ setPlaylist, setCurrentSong }) =>
           />
         ))}
       </div>
-      <PlaybackBar
-        playlist={songs.map(song => ({
-          audioUrl: song.audio_url,
-          songTitle: song.title,
-          artist: song.user.urls.profile,
-          imageUrl: song.user.urls.profile_image.original || 'public/image/default.jpg',
-        }))}
-        currentSong={currentSong || ''} 
-      />
+    
     </>
   );
 };

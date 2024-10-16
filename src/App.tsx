@@ -1,12 +1,10 @@
-import { AudioProvider } from './Components/contex/contex'; 
+import { AudioProvider } from './Components/contex/contex';
 import QuickPicks from './Components/Quick picks/Quick-picks';
 import PlaybackBar from './Components/PlaybackBar/play';
-import Favoritos from './Components/Recommended Albums/CancionesFavoritas';
-import Lista from './Components/Listen Again/ListenAgain';
-
+import Favoritos from './Components/Recommended Albums/CancionesFavoritas'
 import { useState } from 'react';
 import Header from './Components/header/Header'; 
-import Avatar from './Components/akon/akon';
+import Lista  from './Components/Listen Again/ListenAgain';
 import Menu from './Components/Sidebar/menu';
 import FormPlayList from './Components/Sidebar/form'; 
 import './App.css';
@@ -50,10 +48,10 @@ function App() {
           <FormPlayList onCreate={handleCreatePlaylist} />
         ) : (
           <>
-            <Lista setPlaylist={setPlaylist} setCurrentSong={setCurrentSong} />
-            <Avatar />
+            <Lista setPlaylist={setPlaylist} setCurrentSong={setCurrentSong}/>
             <QuickPicks setPlaylist={setPlaylist} setCurrentSong={setCurrentSong} />
-            <Favoritos setPlaylist={setPlaylist} setCurrentSong={setCurrentSong} /> 
+            <Favoritos setPlaylist={setPlaylist} setCurrentSong={setCurrentSong}/>
+            
           </>
         )}
       </>
@@ -61,4 +59,4 @@ function App() {
   );
 }
 
-export default App;
+export default App; 

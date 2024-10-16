@@ -27,49 +27,59 @@
 
 /* Estilos de la tarjeta (aplicado a .card2 para igualar a .card3) */
 .card2 {
-  width: calc(50% - 10px); /* Ocupa el 50% del ancho menos el margen */
-  max-width: 270px; /* Tamaño máximo */
-  height: 200px; /* Altura */
-  box-sizing: border-box; /* Asegura que padding no agrande el tamaño */
-  cursor: pointer; /* Cursor de mano al pasar sobre la tarjeta */
-  margin: 10px; /* Separación entre tarjetas */
-  font-size: 12px; /* Tamaño de fuente para texto */
-  display: flex; /* Flexbox para disposición */
-  flex-direction: column; /* Apila imagen y texto en columna */
-  align-items: center; /* Centra elementos horizontalmente */
-  border-radius: 8px; /* Bordes redondeados */
-  padding: 10px; /* Padding interno */
-  transition: transform 0.3s; /* Animación de transformación */
+  width: calc(50% - 10px); 
+  max-width: 270px; 
+  height: 200px; 
+  box-sizing: border-box; 
+  cursor: pointer; 
+  margin: 10px; 
+  font-size: 12px; 
+  display: flex;
+  flex-direction: column; 
+  align-items: center; 
+  border-radius: 8px; 
+  padding: 10px; 
+  transition: transform 0.3s; 
 }
 
 .card2:hover {
-  transform: scale(1.02); /* Aumento al pasar el cursor */
+  transform: scale(1.02); 
 }
 
-/* Estilos de la imagen dentro de la tarjeta */
+
 .card-image2 {
-  width: 80px; /* Ancho de la imagen */
-  height: 70px; /* Altura de la imagen */
-  margin-right: 15px; /* Margen entre imagen y contenido */
-  border: 1px solid white; /* Borde blanco */
-  border-radius: 4px; /* Bordes redondeados */
+  width: 80px; 
+  height: 70px;
+  margin-right: 15px; 
+  border: 1px solid white;
+  border-radius: 4px; 
 }
 
-/* Contenedor del contenido de la tarjeta */
+
 .card-content2 {
-  display: flex; /* Flexbox para disposición */
-  flex-direction: column; /* Apila contenido verticalmente */
-  justify-content: center; /* Centra el contenido verticalmente */
-  align-items: center; /* Centra el contenido horizontalmente */
+  display: flex; 
+  flex-direction: column; 
+  justify-content: center; 
+  align-items: center; 
 }
 
-/* Estilos para el título y nombre del artista */
+
 .titulo {
-  font-weight: bold; /* Texto en negrita */
-  margin-bottom: 8px; /* Margen inferior para separación */
+  font-weight: bold; 
+  margin-bottom: 8px; 
 }
 
 .artist-name {
-  font-size: 14px; /* Tamaño de fuente */
-  color: #555; /* Color gris oscuro para el nombre del artista */
+  font-size: 14px; 
+  color: #555; 
+}
+
+.image {
+  width: 80px; 
+  height: 70px; 
+  margin-right: 15px; 
+  border: 1px solid white; 
+  border-radius: 4px; 
+  transform: rotate(360deg); 
+  
 }
