@@ -4,7 +4,7 @@ import './play.css';
 
 type PlaybackBarProps = {
   playlist: { audioUrl: string; songTitle: string; artist: string; imageUrl: string }[];
-  currentSong: string; 
+  currentSong: string;
 };
 
 const PlaybackBar = ({ playlist, currentSong }: PlaybackBarProps) => {
@@ -13,18 +13,22 @@ const PlaybackBar = ({ playlist, currentSong }: PlaybackBarProps) => {
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
   const [currentSongIndex, setCurrentSongIndex] = useState<number>(0);
   const [progress, setProgress] = useState<number>(0);
-  const [remainingTime, setRemainingTime] = useState<string>('');
+  const [remainingTime, setRemainingTime] = useState<string>('0:00');
   const [hoverTime, setHoverTime] = useState<string | null>(null);
   const [isClosed, setIsClosed] = useState<boolean>(false);
 
+  // Actualiza el índice de la canción actual y el estado de isPlaying
   useEffect(() => {
     const songIndex = playlist.findIndex((song) => song.audioUrl === currentSong);
     if (songIndex !== -1) {
       setCurrentSongIndex(songIndex);
-      console.log('Current song index updated:', songIndex); 
+      setIsPlaying(true); // Reproduce la canción al cambiar
+    } else {
+      setIsPlaying(false); // Si la canción no está en la lista, no está reproduciéndose
     }
   }, [currentSong, playlist]);
 
+  // Efecto para manejar la reproducción de audio y el progreso
   useEffect(() => {
     if (playlist.length > 0 && audioRef.current) {
       const audioElement = audioRef.current;
@@ -47,8 +51,9 @@ const PlaybackBar = ({ playlist, currentSong }: PlaybackBarProps) => {
       audioElement.addEventListener('timeupdate', updateProgress);
       audioElement.addEventListener('error', handleError);
 
+      // Reproduce la canción automáticamente si está cambiando
       const playAudio = async () => {
-        if (isPlaying) {
+        if (currentSongIndex !== -1 && currentSong) {
           await audioElement.play().catch((err) => {
             console.error('No se pudo reproducir el audio:', err);
           });
@@ -63,8 +68,9 @@ const PlaybackBar = ({ playlist, currentSong }: PlaybackBarProps) => {
         audioElement.pause();
       };
     }
-  }, [playlist, currentSongIndex, isPlaying]);
+  }, [playlist, currentSongIndex, currentSong]);
 
+  // Manejo de reproducción/pausa
   const handlePlayPause = () => {
     if (audioRef.current) {
       if (isPlaying) {
@@ -78,24 +84,27 @@ const PlaybackBar = ({ playlist, currentSong }: PlaybackBarProps) => {
     }
   };
 
+  // Manejo de siguiente canción
   const handleNext = () => {
     if (currentSongIndex < playlist.length - 1) {
       const nextSongUrl = playlist[currentSongIndex + 1]?.audioUrl;
-      setCurrentSong(nextSongUrl);
+      setCurrentSong(nextSongUrl); // Actualiza la canción desde el contexto global
       setCurrentSongIndex(currentSongIndex + 1);
-      setIsPlaying(false);
+      setIsPlaying(true); // Se reproduce automáticamente
     }
   };
 
+  // Manejo de canción anterior
   const handlePrevious = () => {
     if (currentSongIndex > 0) {
       const previousSongUrl = playlist[currentSongIndex - 1]?.audioUrl;
-      setCurrentSong(previousSongUrl);
+      setCurrentSong(previousSongUrl); // Actualiza la canción desde el contexto global
       setCurrentSongIndex(currentSongIndex - 1);
-      setIsPlaying(false);
+      setIsPlaying(true); // Se reproduce automáticamente
     }
   };
 
+  // Manejo de clic en la barra de progreso
   const handleProgressClick = (event: React.MouseEvent<HTMLDivElement>) => {
     const { clientX } = event;
     const progressBar = event.currentTarget;
@@ -108,12 +117,14 @@ const PlaybackBar = ({ playlist, currentSong }: PlaybackBarProps) => {
     }
   };
 
+  // Formateo de tiempo
   const formatTime = (time: number): string => {
     const minutes = Math.floor(time / 60);
     const seconds = Math.floor(time % 60);
     return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
   };
 
+  // manjo de hover en la barra de progreso
   const handleMouseMove = (event: React.MouseEvent<HTMLDivElement>) => {
     const progressBar = event.currentTarget;
     const { left, width } = progressBar.getBoundingClientRect();
@@ -130,6 +141,7 @@ const PlaybackBar = ({ playlist, currentSong }: PlaybackBarProps) => {
     setHoverTime(null);
   };
 
+  // Cerrar la barra de repr
   const handleClose = () => {
     if (audioRef.current) {
       audioRef.current.pause();
@@ -138,6 +150,7 @@ const PlaybackBar = ({ playlist, currentSong }: PlaybackBarProps) => {
     setIsClosed(true);
   };
 
+  // Si está cerrado o no hay lista de reproducc
   if (isClosed || playlist.length === 0) {
     return null;
   }
@@ -145,12 +158,12 @@ const PlaybackBar = ({ playlist, currentSong }: PlaybackBarProps) => {
   return (
     <div className="play">
       <div className="play-controls">
-        <button onClick={handlePrevious}>⏮️</button>
+        <button onClick={handlePrevious}>⏮</button>
         <button onClick={handlePlayPause}>
-          {isPlaying ? '⏸️' : '▶️'}
+          {isPlaying ? '⏸' : '▶'}
         </button>
-        <button onClick={handleNext}>⏭️</button>
-        <button onClick={handleClose}>❌ Cerrar</button>
+        <button onClick={handleNext}>⏭</button>
+        <button onClick={handleClose}>❌</button>
       </div>
       <audio ref={audioRef} />
       <div className="progress-bar" 
@@ -158,18 +171,20 @@ const PlaybackBar = ({ playlist, currentSong }: PlaybackBarProps) => {
            onMouseMove={handleMouseMove}
            onMouseLeave={handleMouseLeave}>
         <div className="progress" style={{ width: `${progress}%` }} />
-        {hoverTime && <span style={{ marginLeft: '10px' }}>{hoverTime}</span>}
+        {hoverTime && <span style={{ marginLeft: '10px', color: 'black' }}>{hoverTime}</span>}
       </div>
+      
       <div>
-        <span style={{color:'red'}}>{remainingTime} restantes</span>
+        <span style={{ color: 'red' }}>{remainingTime} Restantes</span>
       </div>
-      <div className="time-info">
+      <div className="current-song-info">
         <p>{playlist[currentSongIndex]?.songTitle}</p>
       </div>
       <img 
         className="foto8"
-        src={playlist[currentSongIndex]?.imageUrl || 'public/image/default.jpg'} 
-        style={{ width: '60px', height: '60px' }} 
+        src={playlist[currentSongIndex]?.imageUrl || ''} 
+        style={{ width: '50px', height: '50px'} } 
+        alt="Current Song"
       />
     </div>
   );

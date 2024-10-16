@@ -1,12 +1,10 @@
-
-
 import { useEffect, useState } from 'react';
 import { usePlayback } from '../hooks/veite'; 
 import Card from './SongCard';
 import './card.css';
 import Boton from '../botones/boton';
 import FotoInicio from '../avatar/avatar';
-import PlaybackBar from '../PlaybackBar/play';
+
 
 interface Channel {
   title: string;
@@ -122,7 +120,7 @@ const Lista: React.FC<FavoritosProps> = ({ setPlaylist, setCurrentSong }) => {
   return (
     <>
       <FotoInicio title="Listen-Again">
-        <p></p>
+      <p> {currentSong ? displayedSongs.find(song => song.audio_url === currentSong)?.title : ''}</p>
       </FotoInicio>
       <div className="favorito-principal">
         <Boton onNext={handleNext} onPrev={handlePrev} />
@@ -136,15 +134,7 @@ const Lista: React.FC<FavoritosProps> = ({ setPlaylist, setCurrentSong }) => {
           />
         ))}
       </div>
-      <PlaybackBar
-        playlist={songs.map(song => ({
-          audioUrl: song.audio_url,
-          songTitle: song.title,
-          artist: song.user.urls.profile,
-          imageUrl: song.user.urls.profile_image.original || 'public/image/default.jpg', 
-        }))}
-        currentSong={currentSong || ''} 
-      />
+      
     </>
   );
 };

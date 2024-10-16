@@ -1,8 +1,8 @@
-import { ReactNode, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import '../akon/akon.css';
 import Boton from '../botones/boton';
 import FotoInicio from '../avatar/avatar';
-import PlaybackBar from '../PlaybackBar/play'; 
+import PlaybackBar from '../PlaybackBar/play';
 
 interface Channel {
   title: string;
@@ -42,13 +42,18 @@ interface ApiResponse {
   };
 }
 
+interface AvatarProps {
+  setPlaylist: React.Dispatch<React.SetStateAction<{ audioUrl: string; songTitle: string; artist: string; imageUrl: string; }[]>>;
+  setCurrentSong: React.Dispatch<React.SetStateAction<string>>;
+}
+
 const SONGS_PER_PAGE = 8;
 
 type AvatarChildrenProps = {
-  children: ReactNode;
+  children: React.ReactNode;
   img?: string;
   genero: string;
-  onClick: () => void; 
+  onClick: () => void;
 };
 
 function AvatarChildren({ children, img, genero, onClick }: AvatarChildrenProps) {
@@ -62,13 +67,12 @@ function AvatarChildren({ children, img, genero, onClick }: AvatarChildrenProps)
   );
 }
 
-function Avatar() {
+function Avatar({ setPlaylist, setCurrentSong }: AvatarProps) {
   const [songs, setSongs] = useState<Song[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
   const [currentPage, setCurrentPage] = useState<number>(0);
-  const [currentSong, setCurrentSong] = useState<string>(''); 
-  const [audioElement, setAudioElement] = useState<HTMLAudioElement | null>(null); 
+  const [audioElement, setAudioElement] = useState<HTMLAudioElement | null>(null); // Estado para el audio actual
 
   useEffect(() => {
     const fetchSongs = async () => {
@@ -110,9 +114,9 @@ function Avatar() {
     }
   };
 
-  const handlePlay = (audioUrl: string) => {
+  const handlePlay = (audioUrl: string, songTitle: string, artist: string, imageUrl: string) => {
     if (audioElement) {
-      audioElement.pause(); 
+      audioElement.pause(); // Pausar el audio anterior
     }
 
     const newAudioElement = new Audio(audioUrl);
@@ -121,7 +125,8 @@ function Avatar() {
       console.error('No se pudo reproducir el audio:', err);
     });
 
-    setCurrentSong(audioUrl); 
+    setCurrentSong(audioUrl); // Actualizar la canción actual
+    setPlaylist(prev => [...prev, { audioUrl, songTitle, artist, imageUrl }]); // Actualizar la playlist
   };
 
   if (loading) {
@@ -147,11 +152,10 @@ function Avatar() {
             key={song.id}
             genero={song.user.urls.profile}
             img={song.user.urls.profile_image.original || 'public/image/ROMANTICOS.jpg'}
-            onClick={() => handlePlay(song.audio_url)}
+            onClick={() => handlePlay(song.audio_url, song.title, song.user.urls.profile, song.user.urls.profile_image.original || 'public/image/ROMANTICOS.jpg')}
           >
             <p className="song-title">{song.title}</p>
             <p className="artist-name">De {song.user.urls.profile}</p>
-            <p className="album-name"></p>
           </AvatarChildren>
         ))}
       </div>
@@ -163,7 +167,7 @@ function Avatar() {
           artist: song.user.urls.profile,
           imageUrl: song.user.urls.profile_image.original || 'public/image/ROMANTICOS.jpg'
         }))}
-        currentSong={currentSong || ''} 
+        currentSong={''} 
       />
     </>
   );

@@ -11,7 +11,7 @@ type Props = {
 function Card({ img, children, title, artist, onClick }: Props) {
   return (
     <div className="card3" onClick={onClick}> 
-      {img && <img src={img} className="image" alt={title} />}
+      {img && <img src={img} className="image1" alt={title} />}
       <div className='chil'>
         {children}
         <p className="titulo"></p> 

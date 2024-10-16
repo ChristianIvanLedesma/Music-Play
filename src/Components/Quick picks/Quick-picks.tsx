@@ -1,16 +1,14 @@
-
-import {  useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { usePlayback } from '../hooks/veite'; 
 import Card from './tarjetas';
 import './quick.css';
 import Boton from '../botones/boton';
 import FotoInicio from '../avatar/avatar';
-import PlaybackBar from '../PlaybackBar/play';
+
 
 interface Channel {
   title: string;
 }
-
 
 interface User {
   id: number;
@@ -109,8 +107,21 @@ const QuickPicks: React.FC<FavoritosProps> = ({ setPlaylist, setCurrentSong }) =
     })));
   };
 
+
   if (loading) {
-    return <p>Cargando canciones...</p>;
+    return <svg className='cargando'
+    xmlns="http://www.w3.org/2000/svg"
+    width="50"
+    height="50"
+    viewBox="0 0 50 50"
+>
+    <path
+        fill="none"
+        stroke="blue"
+        strokeWidth="5"
+        d="M25 5A20 20 0 1 1 5 25"
+    ></path>
+</svg>;
   }
 
   if (error) {
@@ -121,35 +132,26 @@ const QuickPicks: React.FC<FavoritosProps> = ({ setPlaylist, setCurrentSong }) =
 
   return (
     <>
-      <FotoInicio title="QuickPicks">
-        <p></p>
+      <FotoInicio title="QuickPicks" >
+      <p> {currentSong ? displayedSongs.find(song => song.audio_url === currentSong)?.title : ''}</p>
       </FotoInicio>
       <div className="favorito-principal">
         <Boton onNext={handleNext} onPrev={handlePrev} />
         {displayedSongs.map(song => (
           <Card
-          key={song.id}
-          artist={song.user.urls.profile} 
-          title={song.title}
-          img={song.user.urls.profile_image.original || 'public/image/ROMANTICOS.jpg'} 
-          onClick={() => handlePlay(song.audio_url)} 
-        >
-          <p className="titulo">{song.title}</p>
-        </Card>
-        
-        
+            key={song.id}
+            artist={song.user.urls.profile} 
+            title={song.title}
+            img={song.user.urls.profile_image.original || 'public/image/ROMANTICOS.jpg'} 
+            onClick={() => handlePlay(song.audio_url) }
+            
           
+             // Deshabilitar el botón si es la canción actual
+          >
+            <p className="titulo">{song.title}</p>
+          </Card>
         ))}
       </div>
-      <PlaybackBar
-        playlist={songs.map(song => ({
-          audioUrl: song.audio_url,
-          songTitle: song.title,
-          artist: song.user.urls.profile,
-          imageUrl: song.user.urls.profile_image.original || 'public/image/default.jpg', 
-        }))}
-        currentSong={currentSong || ''} 
-      />
     </>
   );
 };
