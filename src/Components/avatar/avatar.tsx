@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
 import './avatar.css'
-import avatarinicio from '../../assets/logs/header/avatarinicio.jpg';
+import avatarinicio from '../../assets/avatarinicio.jpg';
 
 type Props = {
     title: string;
