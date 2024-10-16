@@ -1,9 +1,9 @@
 
 
 import './Header.css';
-import logo from '../../../public/image/logo.png';
+import logo from '../../assets/logo.png';
 
-import Avatar from '../../../public/image/Avatar.jpg';
+import Avatar from '../../assets/Avatar.jpg';
 
 
 
