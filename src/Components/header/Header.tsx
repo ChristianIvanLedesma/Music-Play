@@ -1,7 +1,8 @@
 
 
 import './Header.css';
-import logo from'../../assets/logs/header/Logo_Music.png';
+import logo from '../../assets/logs/header/Logo_Music.png';
+
 import Avatar from '../../assets/logs/header/Avatar.jpg';
 
 
