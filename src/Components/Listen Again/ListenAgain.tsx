@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { usePlayback } from '../hooks/veite'; 
 import Card from './SongCard';
-import './card.css';
+import './Card.css';
 import Boton from '../botones/boton';
 import FotoInicio from '../avatar/avatar';
 
