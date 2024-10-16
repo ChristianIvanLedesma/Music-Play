@@ -3,7 +3,7 @@
 import './Header.css';
 import logo from '../../../public/image/logo.png';
 
-import Avatar from '../../assets/logs/header/Avatar.jpg';
+import Avatar from '../../../public/image/Avatar.jpg';
 
 
 
