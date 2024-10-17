@@ -124,7 +124,7 @@ const PlaybackBar = ({ playlist, currentSong }: PlaybackBarProps) => {
     return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
   };
 
-  // manjo de hover en la barra de progreso
+  // Manejo de hover en la barra de progreso
   const handleMouseMove = (event: React.MouseEvent<HTMLDivElement>) => {
     const progressBar = event.currentTarget;
     const { left, width } = progressBar.getBoundingClientRect();
@@ -141,17 +141,29 @@ const PlaybackBar = ({ playlist, currentSong }: PlaybackBarProps) => {
     setHoverTime(null);
   };
 
-  // Cerrar la barra de repr
+  // Cerrar la barra de reproducción
   const handleClose = () => {
     if (audioRef.current) {
       audioRef.current.pause();
     }
     setIsPlaying(false);
-    setIsClosed(true);
+    setIsClosed(true); // Cambiar el estado para cerrar la barra
   };
 
-  // Si está cerrado o no hay lista de reproducc
-  if (isClosed || playlist.length === 0) {
+  // Si está cerrado o no hay lista de reproducción
+  if (isClosed) {
+    return (
+      <button 
+        onClick={() => setIsClosed(false)} 
+        style={{ cursor:'pointer' ,color: 'green', position: 'fixed', bottom: '20px', left: '20px', background: 'transparent', border: 'none', fontSize: '24px' }}
+      >
+        {'✓'} {/* Botón con tilde para abrir la barra */}
+      </button>
+    );
+  }
+
+  // Si no hay canciones en la lista, no mostrar nada
+  if (playlist.length === 0) {
     return null;
   }
 
@@ -183,7 +195,7 @@ const PlaybackBar = ({ playlist, currentSong }: PlaybackBarProps) => {
       <img 
         className="foto8"
         src={playlist[currentSongIndex]?.imageUrl || ''} 
-        style={{ width: '50px', height: '50px'} } 
+        style={{ width: '50px', height: '50px'}} 
         alt="Current Song"
       />
     </div>
