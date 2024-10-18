@@ -54,3 +54,12 @@
   color: #666; /* Color gris para diferenciarlo del título */
   margin-top: 5px; /* Espaciado entre el título y el nombre del artista */
 }
+
+
+.like{
+  width: 10px;
+  height: 10px;
+  margin-left: 270px;
+  margin-bottom:45px ;
+
+}
