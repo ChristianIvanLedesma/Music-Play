@@ -40,6 +40,7 @@
   border-radius: 8px; 
   padding: 10px; 
   transition: transform 0.3s; 
+  
 }
 
 .card2:hover {
@@ -81,5 +82,10 @@
   border: 1px solid white; 
   border-radius: 4px; 
   transform: rotate(360deg); 
+ 
   
+}
+
+.like2{
+  margin-right:15px;
 }

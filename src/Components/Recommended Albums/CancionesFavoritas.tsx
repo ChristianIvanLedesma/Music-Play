@@ -119,7 +119,7 @@ const Favoritos: React.FC<FavoritosProps> = ({ setPlaylist, setCurrentSong }) =>
 
   return (
     <>
-      <FotoInicio title="favoritos">
+      <FotoInicio title="Recommended Albums">
       <p > {currentSong}</p>
       </FotoInicio>
       <div className="favorito-principal">
